@@ -7,17 +7,14 @@ const bodyParser = require('body-parser');
 const newtaskRouter = express.Router();
 newtaskRouter.use(bodyParser.json());
 
-newtaskRouter.get('/', (req,res,next) => {
-    NewTasks.all((err,todos) => res.format({
-        json : () =>{
-            res.status(200).json(todos);
-        },
-        html: ()=> {
-            res.render("index.ejs", {todos:todos});
-        }
-    }));
+newtaskRouter.get('/getTask', (req,res,next) => {
+    NewTasks.find({})
+        .then((todos) => {
+            res.render("index.ejs",{todos:todos});
+        }).catch((err) => {
+            next(err);
+        });
 });
-
 
 newtaskRouter.post('/newTask',(req,res,next) => {
         var task = req.body.task;
@@ -44,7 +41,7 @@ newtaskRouter.post('/newTask',(req,res,next) => {
                 });
             }
         }).then((task) => {
-            res.redirect('/');
+            res.redirect('/getTask');
         },(err) => next(err)).catch((err) => {
             next(err);
         });
