@@ -7,10 +7,10 @@ const bodyParser = require('body-parser');
 const newtaskRouter = express.Router();
 newtaskRouter.use(bodyParser.json());
 
-newtaskRouter.get('/getTask', (req,res,next) => {
+newtaskRouter.get('/', (req,res,next) => {
     NewTasks.find({})
         .then((todos) => {
-            res.render("index.ejs",{todos:todos});
+            res.render("../views/index.ejs",{todos:todos});
         }).catch((err) => {
             next(err);
         });
@@ -41,7 +41,8 @@ newtaskRouter.post('/newTask',(req,res,next) => {
                 });
             }
         }).then((task) => {
-            res.redirect('/getTask');
+            res.statusCode=200;
+            res.redirect('/');
         },(err) => next(err)).catch((err) => {
             next(err);
         });

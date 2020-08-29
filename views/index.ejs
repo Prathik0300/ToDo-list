@@ -11,7 +11,7 @@
 
     <body class="d-flex flex-column min-vh-100">
         <nav class="navbar">
-            <a class="navbar-brand" href="/getTask">
+            <a class="navbar-brand" href="/">
                 <i style="top: 1px; position: relative; font-size: 2rem; color: white; opacity: 0.9;" class="fa fa-check-circle"></i>
             </a>
             <span style="position: absolute; left: 3rem; font-size: 2rem; color: white; opacity: 0.9;">
@@ -52,11 +52,25 @@
             <div class="row">
                 <div id="viewTask" class="card">
                     <div class="card-body">
-                        <ul>
-                            <% todos.forEach((item) => { %>
-                                <li><%- item %> </li>
-                            <% }) %>
-                        </ul>
+                        <div id="scroll" class="scroll-view">
+                            <% for( let index = todos.length -1; index >=0; index-- ) { %>
+                                <div style="background-image: linear-gradient(pink,#ffdab9); border-radius: 1rem; position: relative; height: 70px; width: 600px; left: 10px; right: -5px;  overflow-y: scroll; border: none; " class="card my-1">
+                                    <div class="card-body">
+                                        <div style="display: flex; flex-direction: row; font-size: 1.2rem;" class="row">
+                                        <p>
+                                            <span>
+                                                <i style="font-size: 1.5rem; position: absolute; top: 24px; left:5px;" class="fa fa-check-circle"></i>
+                                            </span>
+                                            <span style="position: absolute; left: 30px; right: 80px;"><b><%- todos[index].task %></b></span>
+                                            <span class="icon1">
+                                                <i style="font-size: 1.5rem; position:absolute; top: 24px; right: 25px; border-radius: 2rem;" class="fa fa-trash"></i>
+                                            </span>
+                                        </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>  
+                        </div>
                     </div>
                 </div>
             </div>
