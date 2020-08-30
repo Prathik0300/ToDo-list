@@ -3,12 +3,46 @@
     padding: 0;
     box-sizing: border-box;
 }
-body{
-    background-image: url("./assets/Images/background-textures.png");
-    background-size: 35px;
-    background-repeat: repeat;
+
+
+html,body{
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(to right ,rgb(12, 134, 175),rgb(170, 84, 99));
+    background-repeat: repeat-y;
+    background-position: center center;
+    position: static;
+    background-size: auto;
+    min-height: 100%;
+    width: 100%;
+    -webkit-background-size: 100%;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+
+::-webkit-scrollbar{
+    width: 10px;
+    
+}
+::-webkit-scrollbar-track{
+    background:whitesmoke;
+    
 
 }
+::-webkit-scrollbar-thumb{
+    background: darkgray;;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:gray;
+}
+
+
+
+
+
+
 
 div ::-webkit-scrollbar{
     width: 10px;
@@ -31,10 +65,38 @@ div ::-webkit-scrollbar-thumb:hover{
 }
 
 
-.scroll{
-    overflow: hidden;
+
+/********NAVBAR*********/
+
+nav a.navbar-brand i{
+    top: 1px;
+    position: relative; 
+    font-size: 2rem; 
+    color: white;
+    opacity: 0.9;
 }
 
+nav span{
+    position: absolute; 
+    left: 3rem; 
+    font-size: 2rem; 
+    color: white; 
+    opacity: 0.9;
+}
+
+nav{
+    background-color: black;
+    opacity: 0.9;
+}
+
+
+nav a i{
+    size: 30px;
+}
+
+/************************/
+
+/***************create task***************/
 .card{
     padding: 0;
     max-width: 100%;
@@ -53,34 +115,14 @@ div ::-webkit-scrollbar-thumb:hover{
     max-width: 100%;
     max-height: 100%;
 }
+
 #newTaskRow{
     display:flex;
     flex-wrap: wrap;
     max-width: 100%;
     max-height: 100%;
 }
-#viewTask{
-    padding: 0%;
-    left: 25%;
-    right: 25%;
-    margin-bottom: 5em;
-    display: flex;
-    position: absolute;
-    margin-top: 20em;
-    background-color: transparent;
-    border: none;
-    border-radius: 2rem;
-    overflow-y:scroll ;
-}
 
-#scroll{
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-.row{
-    display: flex;
-}
 #newTask {
     border-radius: 2rem;
 }
@@ -92,20 +134,106 @@ div ::-webkit-scrollbar-thumb:hover{
 }
 div#newTaskSubmitDiv button{
     border-radius: 2rem;
+    font-weight: bold;
+
+}
+/*****************************************/
+
+/************ view task*******************/
+
+#viewTask{
+    padding: 0%;
+    left: 25%;
+    right: 15%;
+    margin-bottom: 5em;
+    display: flex;
+    position: absolute;
+    margin-top: 20em;
+    background-color:transparent;
+    border: none;
+    border-radius: 2rem;
+    overflow-y:scroll ;
 }
 
-nav{
-    background-color: black;
-    opacity: 1;
+#scroll{
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
-nav a i{
-    size: 30px;
+#scroll a  {
+    text-decoration: none;
+    color: darkslategrey;
 }
 
+#task{
+    background-image: linear-gradient(pink,#ffdab9); 
+    border-radius: 1rem; 
+    position: relative; 
+    left: 20px; 
+    overflow-y: scroll; 
+    border: none; 
+    height: 70px; 
+    width: 600px;
+}
 
+div #viewTaskRow{
+    display: flex; 
+    flex-direction: row; 
+    font-size: 1.2rem;
+}
 
-@media(max-width:1318px) {
+div#viewTaskRow span.actions a i{
+    font-size: 1.5rem;
+    position: absolute; 
+    top: 24px;
+    cursor: pointer;
+}
+
+div#viewTaskRow span.tick a i{
+    left:5px;
+    cursor: default;
+}
+
+div#viewTaskRow span.trash a i{
+    right: 25px; 
+    border-radius: 2rem;
+}
+
+div#viewTaskRow span#todo b{
+    position: absolute; 
+    left: 30px; 
+    right: 80px;
+}
+/******************************************/
+
+.row{
+    display: flex;
+}
+
+/******************firstCard Animation*************/
+@keyframes entry{
+    0%{ opacity: 0;}
+    100%{ opacity: 1;}
+}
+
+div.firstCard{
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    animation-name: entry;
+    animation-direction: normal;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+/**************************************************/
+
+/**************media queries for width***************/
+@media(max-width:1335px) {
     #createTaskCard{
         max-width:100%;
         max-height: 100%;
@@ -120,8 +248,100 @@ nav a i{
     #viewTask{
         margin-top: 25em;
     }
-    
+    #newTaskSubmitDiv{
+        align-items: center; 
+        justify-content: center;
+    }
+    #newTaskSubmitDiv div button{
+        padding-right: 25px;
+        padding-left: 25px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 1rem;
+        font-weight: bold;
+    }
 }
+
+/***********tasks card width adjustment***********/
+@media(max-width:1358px){
+ #task{
+     width: 580px;
+ }   
+}
+@media(max-width:1318px){
+    #task{
+        width: 550px;
+    }   
+}
+@media(max-width:1258px){
+    #task{
+        width: 530px;
+    }   
+}
+@media(max-width:1218px){
+    #task{
+        width: 510px;
+    }   
+}
+@media(max-width:1177px){
+    #task{
+        width: 480px;
+    }   
+}
+@media(max-width:1118px){
+    #task{
+        width: 450px;
+    }   
+}
+@media(max-width:1057px){
+    #task{
+        width: 420px;
+    }   
+}
+@media(max-width:1001px){
+    #task{
+        width: 380px;
+    }   
+}
+@media(max-width:917px){
+    #task{
+        width: 350px;
+    }   
+}
+@media(max-width:857px){
+    #task{
+        width: 320px;
+    }   
+}
+@media(max-width:799px){
+    #task{
+        width: 290px;
+    }   
+}
+@media(max-width:740px){
+    #task{
+        width: 250px;
+    }   
+}
+@media(max-width:664px){
+    #task{
+        width: 220px;
+    }   
+}
+@media(max-width:597px){
+    #task{
+        width: 190px;
+    }   
+}
+@media(max-width:538px){
+    #task{
+        width: 170px;
+    }   
+}
+/*************************end of media queries for width*****/
+
+/***********media queries for height****************/
+
 
 @media(max-height:517px){
     #createTaskCard{
@@ -137,25 +357,18 @@ nav a i{
 
 }
 
-@media(max-height:265px){
+@media(max-height:268px){
     #createTaskCard{
         
         max-width:100%;
-        max-height: 100%;
+        min-height: 280px;
         display: flex;
         flex-direction: column;
-        position: relative;
-        
+        position: absolute;
     }
 
-    #newTaskRow{
-        position: static;
-        display:flex;
-        flex-wrap: nowrap;
-        flex-direction: column;
-        max-width: 100%;
-        max-height: 100;
-        top: auto;
-        bottom: auto;
-    }
+    
 }
+
+
+/***********end of media queries for height************/

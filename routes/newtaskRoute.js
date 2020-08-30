@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const newtaskRouter = express.Router();
 newtaskRouter.use(bodyParser.json());
 
+
 newtaskRouter.get('/', (req,res,next) => {
     NewTasks.find({})
         .then((todos) => {
@@ -16,10 +17,34 @@ newtaskRouter.get('/', (req,res,next) => {
         });
 });
 
+newtaskRouter.get('/deleteTask/:taskId', (req,res,next) => {
+    NewTasks.findByIdAndRemove(req.params.taskId)
+        .then((resp) => {
+            res.statusCode =200;
+            res.redirect("/");
+        }, (err) => next(err)).catch((err) => {
+            next(err);
+        });
+});
+
+
+
+
+newtaskRouter.get('/clear', (req,res,next) => {
+    var task = req.body.task;
+    var date = req.body.date;
+    var time = req.body.time;
+    task = "";
+    date = "";
+    time = "";
+    res.redirect("/");
+});
+
 newtaskRouter.post('/newTask',(req,res,next) => {
-        var task = req.body.task;
-        var date = req.body.date;
-        var time = req.body.time;
+    var task = req.body.task;
+    var date = req.body.date;
+    var time = req.body.time;
+    
         NewTasks.findOne({
             task:task,
             date:date,

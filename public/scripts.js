@@ -1,3 +1,5 @@
+
+
 function clear(){
     console.log("done");
     var task = document.getElementById("newTask");

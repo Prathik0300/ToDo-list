@@ -9,12 +9,12 @@
         <script src="./scripts.js"></script>
     </head>
 
-    <body class="d-flex flex-column min-vh-100">
+    <body class="d-flex min-vh-100 flex-column">
         <nav class="navbar">
             <a class="navbar-brand" href="/">
-                <i style="top: 1px; position: relative; font-size: 2rem; color: white; opacity: 0.9;" class="fa fa-check-circle"></i>
+                <i class="fa fa-check-circle"></i>
             </a>
-            <span style="position: absolute; left: 3rem; font-size: 2rem; color: white; opacity: 0.9;">
+            <span>
                 To-Do List
             </span>
         </nav>
@@ -34,10 +34,8 @@
                                     <input type="time" name="time" class="form-control px-3" id="newTaskTime" required autofocus>
                                 </div>
                             </div>
-                            <div id="newTaskSubmitDiv" style="display: flex; flex-direction: row-reverse;" class="form-row">
-                                    <div class="form-group mx-2">
-                                        <button class="btn btn-primary" type="button" onclick="clear()">Clear Task</button>
-                                    </div>
+                            <div id="newTaskSubmitDiv" style="display: flex; flex-direction: row-reverse;" class="text-center">
+                                    
                                     <div class="form-group mx-2">
                                         <button class="btn btn-primary" type="submit" name="Add">Add Task</button>
                                     </div>
@@ -53,23 +51,46 @@
                 <div id="viewTask" class="card">
                     <div class="card-body">
                         <div id="scroll" class="scroll-view">
+                            
                             <% for( let index = todos.length -1; index >=0; index-- ) { %>
-                                <div style="background-image: linear-gradient(pink,#ffdab9); border-radius: 1rem; position: relative; height: 70px; width: 600px; left: 10px; right: -5px;  overflow-y: scroll; border: none; " class="card my-1">
+                                <% var j = todos[index]._id; %>
+                                <% var t = todos[index].task; %>
+                                <% if ((index == todos.length -1)) { %>
+
+                                    <div id="task" class="card my-1 firstCard">
+                                        <div class="card-body">
+                                            <div id="viewTaskRow" class="row">
+                                            <p>
+                                                <span class="actions tick">
+                                                    <a><i class="fa fa-check-circle"></i></a>
+                                                </span>
+                                                <span id="todo"><b><%- todos[index].task %></b></span>
+                                                <span class="actions trash">
+                                                    <a href="/deleteTask/<%= j %> "><i class="fa fa-trash"></i></a>
+                                                </span>
+                                            </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } else {%>
+                                                               
+                                <div id="task" class="card my-1">
                                     <div class="card-body">
-                                        <div style="display: flex; flex-direction: row; font-size: 1.2rem;" class="row">
+                                        <div id="viewTaskRow" class="row">
                                         <p>
-                                            <span>
-                                                <i style="font-size: 1.5rem; position: absolute; top: 24px; left:5px;" class="fa fa-check-circle"></i>
+                                            <span class="actions tick">
+                                                <a><i class="fa fa-check-circle"></i></a>
                                             </span>
-                                            <span style="position: absolute; left: 30px; right: 80px;"><b><%- todos[index].task %></b></span>
-                                            <span class="icon1">
-                                                <i style="font-size: 1.5rem; position:absolute; top: 24px; right: 25px; border-radius: 2rem;" class="fa fa-trash"></i>
+                                            <span id="todo"><b><%- todos[index].task %></b></span>
+                                            <span class="actions trash">
+                                                <a href="/deleteTask/<%= j %>"><i id="<% todos[index]._id %> " class="fa fa-trash"></i></a>
                                             </span>
                                         </p>
                                         </div>
                                     </div>
                                 </div>
-                            <% } %>  
+                            <% } %>
+                            <% } %>   
                         </div>
                     </div>
                 </div>

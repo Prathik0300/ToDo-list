@@ -14,6 +14,11 @@ const NewTaskSchema = new schema({
     time:{
         type:String,
         required:true
+    },
+    status: {
+        type: Boolean,
+        required: false,
+        default: 0
     }
 },{
     timestamps:true
